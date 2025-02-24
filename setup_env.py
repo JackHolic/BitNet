@@ -197,10 +197,10 @@ def compile():
     run_command(["cmake", "--build", "build", "--config", "Release"], log_step="compile")
 
 def main():
-    setup_gguf()
-    gen_code()
+    #setup_gguf()
+    #gen_code()
     compile()
-    prepare_model()
+    #prepare_model()
     
 def parse_args():
     _, arch = system_info()
@@ -220,6 +220,7 @@ def signal_handler(sig, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
     args = parse_args()
+    args.hf_repo = 'tiiuae/Falcon3-7B-Instruct-1.58bit'
     Path(args.log_dir).mkdir(parents=True, exist_ok=True)
     logging.basicConfig(level=logging.INFO)
     main()
